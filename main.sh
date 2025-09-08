@@ -88,7 +88,7 @@ remove_project() {
 
 edit_config_file(){
 
-    nano /opt/DVHOST/dvhost.config
+    nano /opt/sixtininelearn/sixtininelearn.config
 
     sudo systemctl daemon-reload
     sudo systemctl enable sixtininelearn_template
