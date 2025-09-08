@@ -11,7 +11,7 @@
 ## نصب و بروزرسانی  
 
 ```bash
-bash <(curl -Ls https://raw.githubusercontent.com/dev-ir/xui-subscription-template/refs/heads/master/main.sh )
+bash <(curl -Ls https://raw.githubusercontent.com/mzydev/3x-ui-template/refs/heads/master/main.sh )
 ```  
 
 ## فایل پیکربندی  
@@ -36,9 +36,6 @@ nano /opt/sixtininelearn/views/sub.ejs
 
 ## 🪚 پیش‌نمایش  
 
-<p align="right">
-    <img width="100%" src="https://github.com/user-attachments/assets/629f455d-58c8-4b9b-b722-2948b39a9511" alt="تصویر">
-</p>  
 
 ## متغیرهای پویا  
 
@@ -68,10 +65,8 @@ nano /opt/sixtininelearn/views/sub.ejs
 
 ## 📧 عضویت در کانال تلگرام  
 
-TG : [https://t.me/+EpErnDsDPhw3ZThk](https://t.me/+EpErnDsDPhw3ZThk)  
+TG : [https://t.me/+txKWAI5Y5dI3NTg0](https://t.me/+txKWAI5Y5dI3NTg0)  
 
-## تعداد ستاره‌ها در طول زمان  
-[![Stargazers over time](https://starchart.cc/dev-ir/XUI-Subscription-Template.svg?variant=adaptive)](https://starchart.cc/dev-ir/XUI-Subscription-Template)  
 
 </div>
 ```
