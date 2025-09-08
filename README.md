@@ -61,7 +61,7 @@ nano /opt/sixtininelearn/views/sub.ejs
 
 
 
-## 📧 عضویت در کانال تلگرام  
+## 📧 عضویت در کانال تلگرام و یوتیوب  
 
 
 [![Telegram](https://img.shields.io/badge/Telegram--0088CC?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/+txKWAI5Y5dI3NTg0) 
