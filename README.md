@@ -7,8 +7,9 @@
 ## نصب و بروزرسانی  
 
 ```bash
-bash <(curl -Ls https://raw.githubusercontent.com/mzydev/3x-ui-template/refs/heads/master/main.sh )
-```  
+bash <(curl -Ls https://raw.githubusercontent.com/mzydev/3x-ui-template/refs/heads/main/main.sh )
+```
+
 
 ## فایل پیکربندی  
 
