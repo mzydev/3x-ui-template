@@ -43,7 +43,7 @@ install_dependencies() {
 clone_project() {
     echo "Cloning the project to $PROJECT_DIR..."
     sudo rm -rf "$PROJECT_DIR"
-    sudo git clone https://github.com/MHSanaei/3x-ui.git "$PROJECT_DIR"
+    sudo git clone https://github.com/mzydev/3x-ui-template.git "$PROJECT_DIR"
     cd "$PROJECT_DIR" || exit
 }
 
