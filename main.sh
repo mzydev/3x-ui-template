@@ -43,7 +43,7 @@ install_dependencies() {
 clone_project() {
     echo "Cloning the project to $PROJECT_DIR..."
     sudo rm -rf "$PROJECT_DIR"
-    sudo git clone https://github.com/dev-ir/xui-subscription-template.git "$PROJECT_DIR"
+    sudo git clone https://github.com/MHSanaei/3x-ui.git "$PROJECT_DIR"
     cd "$PROJECT_DIR" || exit
 }
 
@@ -106,7 +106,7 @@ menu(){
     echo "| ██╔╝ ██╗╚██████╔╝██║      ██║   ███████╗██║ ╚═╝ ██║██║     ███████╗██║  ██║   ██║   ███████╗  |"
     echo "| ╚═╝  ╚═╝ ╚═════╝ ╚═╝      ╚═╝   ╚══════╝╚═╝     ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝  |"
     echo "+-----------------------------------------------------------------------------------------------+"                                        
-    echo -e "| Telegram Channel : ${YELLOW}@DVHOST_CLOUD ${NC} | YouTube : ${RED}youtube.com/@dvhost_cloud${NC} |  Version : ${GREEN} ${VERSION} ${NC} "
+    echo -e "| Telegram Channel : ${YELLOW}@SIXTININELEARN ${NC} | YouTube : ${RED}youtube.com/@SIXTININELEARN${NC} |  Version : ${GREEN} ${VERSION} ${NC} "
     echo "+-----------------------------------------------------------------------------------------------+"            
     # echo "+-----------------------------------------------------------------------------------------------+"                                        
     # echo -e "| VPS Location: ${YELLOW}$SERVER_COUNTRY${NC} | Server IP:${RED} $SERVER_IP ${NC} | Server ISP:${GREEN} $SERVER_ISP${NC}" 
