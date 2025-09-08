@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <title>اطلاعات کاربر : <%= data.email %></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" type="image/x-icon" href="assets/img/icons/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <meta name="theme-color" content="#1a1a1a">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #1a1a1a;
+            min-height: 100vh;
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 1rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        /* Updated header with dark theme styling */
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #3a3a3a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo img {
+            width: 80%;
+            height: 80%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .welcome-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .user-email {
+            font-size: 0.9rem;
+            color: #888888;
+            font-weight: 400;
+            background: #333333;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            display: inline-block;
+            border: 1px solid #444444;
+        }
+
+        /* Dark theme card design matching reference */
+        .card {
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Updated URL and QR section layout */
+        .url-qr-section {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .url-container {
+            position: relative;
+        }
+
+        .url-input {
+            width: 100%;
+            background: #333333;
+            border: 1px solid #444444;
+            border-radius: 8px;
+            padding: 1rem 3.5rem 1rem 1rem;
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-family: 'Courier New', monospace;
+            resize: none;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .url-input:focus {
+            border-color: #10b981;
+            background: #3a3a3a;
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #10b981;
+            border: none;
+            border-radius: 6px;
+            width: 36px;
+            height: 36px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #059669;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        /* QR code styling to match dark theme */
+        .qr-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .qr-code-wrapper {
+            background: #ffffff;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid #444444;
+        }
+
+        #qrcode {
+            border-radius: 4px;
+        }
+
+        .qr-actions {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .qr-btn {
+            background: #333333;
+            border: 1px solid #444444;
+            border-radius: 6px;
+            padding: 0.4rem;
+            color: #888888;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            font-size: 0.75rem;
+        }
+
+        .qr-btn:hover {
+            background: #444444;
+            color: #ffffff;
+        }
+
+        /* Info grid with dark theme styling matching reference */
+        .info-grid {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: #333333;
+            border-radius: 8px;
+            border: 1px solid #444444;
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            background: #3a3a3a;
+            border-color: #555555;
+        }
+
+        .info-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .info-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .status-active .info-icon {
+            background: #10b981;
+            color: white;
+        }
+
+        .status-inactive .info-icon {
+            background: #ef4444;
+            color: white;
+        }
+
+        .days-icon {
+            background: #8b5cf6;
+            color: white;
+        }
+
+        .usage-icon {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .total-icon {
+            background: #06b6d4;
+            color: white;
+        }
+
+        .info-label {
+            font-size: 0.9rem;
+            color: #cccccc;
+            font-weight: 500;
+        }
+
+        .info-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .status-inactive {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        /* Support section with dark theme */
+        .support-section {
+            margin-top: 1.5rem;
+        }
+
+        /* Platform section with dark theme */
+        .platform-section {
+            margin-top: 1.5rem;
+        }
+
+        .platform-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .platform-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .platform-subtitle {
+            font-size: 0.95rem;
+            color: #888888;
+            font-weight: 400;
+        }
+
+        .platform-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .platform-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1.5rem 1rem;
+            background: #2a2a2a;
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            min-height: 100px;
+        }
+
+        .platform-btn:hover {
+            background: #333333;
+            border-color: #fbbf24;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+        }
+
+        .platform-icon {
+            font-size: 2rem;
+            color: #f59e0b;
+        }
+
+        .config-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: #f59e0b;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: 2px solid #f59e0b;
+        }
+
+        .config-btn:hover {
+            background: #fbbf24;
+            border-color: #fbbf24;
+            transform: translateY(-1px);
+        }
+
+        /* Modal with dark theme */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            max-width: 300px;
+            margin: 1rem;
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .modal button {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal button:hover {
+            background: #059669;
+        }
+
+        /* Responsive design for mobile */
+        @media (max-width: 640px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .card {
+                padding: 1rem;
+            }
+            
+            .url-qr-section {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .qr-container {
+                order: -1;
+                align-self: center;
+            }
+            
+            .info-item {
+                padding: 0.75rem;
+            }
+            
+            .platform-grid {
+                gap: 0.75rem;
+            }
+            
+            .platform-btn {
+                padding: 1.25rem 0.75rem;
+                min-height: 90px;
+            }
+            
+            .platform-icon {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* Success animations */
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% { transform: translateY(-50%) scale(1); }
+            40%, 43% { transform: translateY(-50%) scale(1.1); }
+        }
+
+        .copy-success {
+            animation: bounce 0.6s ease-in-out;
+        }
+
+        /* Added styles for collapsible QR code interface */
+        .qr-collapsible-section {
+            margin-top: 1.5rem;
+        }
+
+        .qr-collapsible-card {
+            background: #2a2a2a;
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .qr-collapsible-card:hover {
+            border-color: #fbbf24;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+        }
+
+        .qr-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+            background: #2a2a2a;
+        }
+
+        .qr-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .qr-icon-btn, .copy-icon-btn {
+            background: none;
+            border: none;
+            color: #f59e0b;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+        }
+
+        .qr-icon-btn:hover, .copy-icon-btn:hover {
+            background: rgba(245, 158, 11, 0.1);
+            color: #fbbf24;
+        }
+
+        .copy-icon-btn.copy-success {
+            animation: bounce 0.6s ease-in-out;
+            color: #10b981;
+        }
+
+        .qr-header-right {
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .server-location {
+            color: #cccccc;
+        }
+
+        .qr-card-content {
+            display: none;
+            padding: 1.5rem;
+            background: #333333;
+            border-top: 1px solid #444444;
+            text-align: center;
+        }
+
+        .qr-collapsible-card.expanded .qr-card-content {
+            display: block;
+        }
+
+        .qr-code-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+        }
+
+        #collapsible-qrcode {
+            background: #ffffff;
+            padding: 1rem;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        #collapsible-qrcode canvas,
+        #collapsible-qrcode img {
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- <div class="logo">
+                <img src="/" alt="لوگو">
+            </div> -->
+            
+            <div class="user-profile" style="text-align: center; margin-bottom: 1.5rem;">
+                <div class="user-avatar" style="width: 80px; height: 80px; margin: 0 auto 1rem; border-radius: 50%; border: 3px solid #f59e0b; background: #333333; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-user" style="font-size: 2rem; color: #f59e0b;"></i>
+                </div>
+                
+                <div class="user-status" style="text-align: center; margin: 1rem 0;">
+                    <% 
+                    let isActive = false;
+                    let statusText = 'غیرفعال';
+                    
+                    if (data.enable) {
+                        try {
+                            if (data.expiryTime && data.expiryTime !== 0) {
+                                const expiryTime = parseInt(data.expiryTime, 10);
+                                const currentTime = Date.now();
+                                if (expiryTime > currentTime) {
+                                    isActive = true;
+                                    statusText = 'فعال';
+                                } else {
+                                    isActive = false;
+                                    statusText = 'منقضی شده';
+                                }
+                            } else {
+                                // Unlimited subscription
+                                isActive = true;
+                                statusText = 'فعال';
+                            }
+                        } catch (error) {
+                            isActive = false;
+                            statusText = 'غیرفعال';
+                        }
+                    } else {
+                        statusText = 'در انتظار اولین اتصال';
+                    }
+                    %>
+                    
+                    <span class="status-badge <%= isActive ? 'status-active' : 'status-inactive' %>" style="font-size: 0.9rem; padding: 0.4rem 1rem;">
+                        <%= statusText %>
+                    </span>
+                </div>
+                
+                <div class="subscription-type" style="background: #f59e0b; color: #1a1a1a; padding: 0.3rem 1rem; border-radius: 16px; display: inline-block; font-size: 0.85rem; font-weight: 600;">
+                    اشتراک VIP
+                </div>
+            </div>
+            
+            <!-- Added data usage statistics matching reference design -->
+            <div class="usage-stats" style="display: grid; gap: 0.75rem; text-align: right;">
+                <div class="stat-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid #3a3a3a;">
+                    <span style="color: #f59e0b; font-weight: 600; font-size: 1rem;"><%= (data.total / 1_073_741_824).toFixed(1) %> GB</span>
+                    <span style="color: #cccccc; font-size: 0.9rem;">حجم کل دوره</span>
+                </div>
+                
+                <div class="stat-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid #3a3a3a;">
+                    <span style="color: #f59e0b; font-weight: 600; font-size: 1rem;"><%= ((data.up + data.down) / 1_073_741_824).toFixed(1) %> GB</span>
+                    <span style="color: #cccccc; font-size: 0.9rem;">حجم مصرف شده</span>
+                </div>
+                
+                <div class="stat-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0;">
+                    <span style="color: #f59e0b; font-weight: 600; font-size: 1rem;"><%= ((data.total - (data.up + data.down)) / 1_073_741_824).toFixed(1) %> GB</span>
+                    <span style="color: #cccccc; font-size: 0.9rem;">حجم باقیمانده</span>
+                </div>
+            </div>
+            
+            <!-- Added remaining time info -->
+            <div style="text-align: center; margin-top: 1rem; color: #888888; font-size: 0.85rem;">
+                <% 
+                try {
+                    if (data.expiryTime && data.expiryTime !== 0) {
+                        const expiryTime = parseInt(data.expiryTime, 10);
+                        const currentTime = Date.now();
+                        if (expiryTime > currentTime) {
+                            const remainingHours = Math.floor((expiryTime - currentTime) / (1000 * 60 * 60));
+                            const remainingDays = Math.floor(remainingHours / 24);
+                            if (remainingDays > 0) {
+                                %>از اشتراک شما <%= remainingDays %> روز باقی مانده است<%
+                            } else {
+                                %>از اشتراک شما <%= remainingHours %> ساعت باقی مانده است<%
+                            }
+                        } else {
+                            %>اشتراک شما منقضی شده است<%
+                        }
+                    } else {
+                        %>اشتراک شما نامحدود است<%
+                    }
+                } catch (error) {
+                    %>اطلاعات زمان در دسترس نیست<%
+                }
+                %>
+            </div>
+        </div>
+
+        <!-- Simplified info cards - removed redundant information -->
+        <!-- <div class="card">
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-left">
+                        <div class="info-icon <%= isActive ? 'status-active' : 'status-inactive' %>">
+                            <i class="fas fa-<%= isActive ? 'check' : 'times' %>"></i>
+                        </div>
+                        <div class="info-label">وضعیت کانکشن</div>
+                    </div>
+                    <div class="info-value">
+                        <span class="status-badge <%= isActive ? 'status-active' : 'status-inactive' %>">
+                            <%= statusText %>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-left">
+                        <div class="info-icon days-icon">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <div class="info-label">مدت اعتبار</div>
+                    </div>
+                    <div class="info-value">
+                        <% 
+                        try {
+                            if (!data || typeof data.expiryTime === 'undefined') {
+                                throw new Error("data یا expiryTime تعریف نشده است.");
+                            }
+                            const expiryTime = parseInt(data.expiryTime, 10);
+                            if (isNaN(expiryTime)) {
+                                throw new Error("expiryTime یک عدد معتبر نیست.");
+                            }
+                            const currentTime = Date.now();                
+                            if (expiryTime === 0) {
+                                %>
+                                نامحدود
+                                <%
+                            } 
+                            else if (expiryTime > currentTime) {
+                                const remainingDays = Math.floor((expiryTime - currentTime) / (1000 * 60 * 60 * 24));
+                                %>
+                                <%= remainingDays + ' روز' %>
+                                <%
+                            } 
+                            else {
+                                %>
+                                منقضی شده
+                                <%
+                            }
+                        } catch (error) {
+                            console.error("خطا در محاسبه روزهای باقیمانده:", error.message);
+                            %>
+                            نامشخص
+                            <%
+                        }
+                        %>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+                    <div class="qr-collapsible-section">
+                <div class="qr-collapsible-card" id="qr-card">
+                    <div class="qr-card-header" onclick="toggleQRCard()">
+                        <div class="qr-header-left">
+                            <button class="qr-icon-btn" onclick="event.stopPropagation(); toggleQRCard()">
+                                <i class="fas fa-qrcode"></i>
+                            </button>
+                            <button class="copy-icon-btn" onclick="event.stopPropagation(); copySubUrl()">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="qr-header-right">
+                            <span class="server-location">< سابلینک شما</span>
+                        </div>
+                    </div>
+                    
+                    <div class="qr-card-content" id="qr-content">
+                        <div class="qr-code-display">
+                            <div id="collapsible-qrcode"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Platform section with dark theme -->
+        <div class="platform-section">
+            <div class="platform-header">
+                <h2 class="platform-title">راهنما ی راه‌اندازی</h2>
+                <p class="platform-subtitle">دستگاه خود را انتخاب کنید</p>
+            </div>
+            
+            <div class="platform-grid">
+                <a href="/guide/ios" class="platform-btn">
+                    <i class="fab fa-apple platform-icon"></i>
+                    <span>آیفون / مک</span>
+                </a>
+                
+                <a href="/guide/android" class="platform-btn">
+                    <i class="fab fa-android platform-icon"></i>
+                    <span>اندروید</span>
+                </a>
+                
+                <a href="/guide/linux" class="platform-btn">
+                    <i class="fab fa-linux platform-icon"></i>
+                    <span>لینوکس</span>
+                </a>
+                
+                <a href="/guide/windows" class="platform-btn">
+                    <i class="fab fa-windows platform-icon"></i>
+                    <span>ویندوز</span>
+                </a>
+            </div>
+            
+            <!-- Replaced config button with collapsible QR code interface -->
+
+        </div>
+    </div>
+
+    <!-- Modal with dark theme -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <p id="modal-text">لینک شما با موفقیت کپی شد</p>
+            <button onclick="closeModal()">باشه</button>
+        </div>
+    </div>
+
+    <script>
+
+        let isQRExpanded = false;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('[v0] DOM loaded, preparing collapsible QR');
+            // Don't generate QR immediately, wait for user interaction
+        });
+
+        function toggleQRCard() {
+            const qrCard = document.getElementById('qr-card');
+            const qrContent = document.getElementById('qr-content');
+            
+            if (!isQRExpanded) {
+                // Expand the card
+                qrCard.classList.add('expanded');
+                qrContent.style.display = 'block';
+                
+                // Generate QR code when expanding
+                const subUrl = '<%= data.suburl %>';
+                generateCollapsibleQRCode(subUrl);
+                
+                isQRExpanded = true;
+            } else {
+                // Collapse the card
+                qrCard.classList.remove('expanded');
+                qrContent.style.display = 'none';
+                isQRExpanded = false;
+            }
+        }
+
+        function generateCollapsibleQRCode(text) {
+            console.log('[v0] Generating collapsible QR code for:', text);
+            const qrContainer = document.getElementById('collapsible-qrcode');
+            qrContainer.innerHTML = '<div style="color: #888; font-size: 0.8rem; padding: 20px; text-align: center;">در حال تولید...</div>';
+            
+            if (typeof QRCode !== 'undefined') {
+                try {
+                    QRCode.toCanvas(qrContainer, text, {
+                        width: 200,
+                        height: 200,
+                        margin: 2,
+                        color: {
+                            dark: '#1a1a1a',
+                            light: '#ffffff'
+                        },
+                        errorCorrectionLevel: 'M'
+                    }, function (error) {
+                        if (error) {
+                            console.error('[v0] Collapsible QR Code generation failed:', error);
+                            generateCollapsibleQRCodeFallback(text);
+                        } else {
+                            console.log('[v0] Collapsible QR Code generated successfully');
+                        }
+                    });
+                } catch (error) {
+                    console.error('[v0] Collapsible QR Code generation error:', error);
+                    generateCollapsibleQRCodeFallback(text);
+                }
+            } else {
+                generateCollapsibleQRCodeFallback(text);
+            }
+        }
+
+        function generateCollapsibleQRCodeFallback(text) {
+            console.log('[v0] Using fallback for collapsible QR generation');
+            const qrContainer = document.getElementById('collapsible-qrcode');
+            const encodedText = encodeURIComponent(text);
+            const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodedText}&bgcolor=ffffff&color=1a1a1a&margin=2`;
+            
+            qrContainer.innerHTML = `
+                <img src="${qrApiUrl}" 
+                     alt="QR Code" 
+                     style="width: 200px; height: 200px; border-radius: 8px;"
+                     onload="console.log('[v0] Fallback collapsible QR code loaded successfully')"
+                     onerror="console.error('[v0] Fallback collapsible QR code failed to load'); this.style.display='none'; this.parentNode.innerHTML='<div style=\\'color: #ef4444; font-size: 0.8rem; padding: 20px; text-align: center;\\'>خطا در تولید QR کد</div>';">
+            `;
+        }
+
+        function copySubUrl() {
+            const subUrl = '<%= data.suburl %>';
+            
+            // Create temporary textarea for copying
+            const tempTextarea = document.createElement('textarea');
+            tempTextarea.value = subUrl;
+            document.body.appendChild(tempTextarea);
+            tempTextarea.select();
+            tempTextarea.setSelectionRange(0, 99999);
+            
+            try {
+                document.execCommand('copy');
+                document.body.removeChild(tempTextarea);
+                
+                // Visual feedback
+                const copyBtn = document.querySelector('.copy-icon-btn');
+                copyBtn.classList.add('copy-success');
+                setTimeout(() => {
+                    copyBtn.classList.remove('copy-success');
+                }, 600);
+                
+                showModal('لینک شما با موفقیت کپی شد');
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+                document.body.removeChild(tempTextarea);
+                showModal('خطا در کپی کردن لینک');
+            }
+        }
+
+        function copyToClipboard() {
+            const textarea = document.getElementById("copy-textarea");
+            const copyBtn = document.querySelector(".copy-btn");
+            
+            textarea.select();
+            textarea.setSelectionRange(0, 99999);
+            
+            try {
+                document.execCommand("copy");
+                copyBtn.classList.add("copy-success");
+                setTimeout(() => {
+                    copyBtn.classList.remove("copy-success");
+                }, 600);
+                showModal('لینک شما با موفقیت کپی شد');
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+                showModal('خطا در کپی کردن لینک');
+            }
+        }
+
+        async function shareQR() {
+            const canvas = document.querySelector('#qrcode canvas');
+            const img = document.querySelector('#qrcode img');
+            
+            if (canvas && navigator.share) {
+                try {
+                    canvas.toBlob(async (blob) => {
+                        const file = new File([blob], 'qr-code.png', { type: 'image/png' });
+                        await navigator.share({
+                            title: 'QR Code',
+                            text: 'لینک اشتراک من',
+                            files: [file]
+                        });
+                    });
+                } catch (err) {
+                    console.error('Share failed:', err);
+                    downloadQR();
+                }
+            } else if (img && navigator.share) {
+                try {
+                    const response = await fetch(img.src);
+                    const blob = await response.blob();
+                    const file = new File([blob], 'qr-code.png', { type: 'image/png' });
+                    await navigator.share({
+                        title: 'QR Code',
+                        text: 'لینک اشتراک من',
+                        files: [file]
+                    });
+                } catch (err) {
+                    console.error('Share failed:', err);
+                    downloadQR();
+                }
+            } else {
+                downloadQR();
+            }
+        }
+
+        function downloadQR() {
+            const canvas = document.querySelector('#qrcode canvas');
+            const img = document.querySelector('#qrcode img');
+            
+            if (canvas) {
+                const link = document.createElement('a');
+                link.download = 'qr-code.png';
+                link.href = canvas.toDataURL();
+                link.click();
+                showModal('QR کد دانلود شد');
+            } else if (img) {
+                const link = document.createElement('a');
+                link.download = 'qr-code.png';
+                link.href = img.src;
+                link.target = '_blank';
+                link.click();
+                showModal('QR کد دانلود شد');
+            } else {
+                showModal('QR کد موجود نیست');
+            }
+        }
+
+        function showModal(message) {
+            const modal = document.getElementById("modal-overlay");
+            const modalText = document.getElementById("modal-text");
+            modalText.textContent = message;
+            modal.classList.add("active");
+            
+            setTimeout(() => {
+                closeModal();
+            }, 2500);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("modal-overlay");
+            modal.classList.remove("active");
+        }
+
+        document.getElementById("modal-overlay").addEventListener("click", function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>راهنمای نصب - <%= platformName %></title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: #1a1a1a;
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: #2a2a2a;
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #333333;
+            border-color: #fbbf24;
+        }
+
+        .platform-icon {
+            font-size: 4rem;
+            color: #f59e0b;
+            margin-bottom: 1rem;
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #cccccc;
+        }
+
+        .guide-content {
+            background: #2a2a2a;
+            border: 2px solid #333333;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .step {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #333333;
+        }
+
+        .step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            background: #f59e0b;
+            color: #1a1a1a;
+            border-radius: 50%;
+            font-weight: 700;
+            margin-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .step-content {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #cccccc;
+        }
+
+        .app-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #f59e0b;
+            color: #1a1a1a;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .app-link:hover {
+            background: #fbbf24;
+            transform: translateY(-2px);
+        }
+
+        .warning {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid #ef4444;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            color: #fca5a5;
+        }
+
+        .tip {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid #22c55e;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            color: #86efac;
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()" class="back-btn">
+        <i class="fas fa-arrow-right"></i>
+        بازگشت
+    </a>
+
+    <div class="container">
+        <div class="header">
+            <div class="platform-icon">
+                <% if (platform === 'ios') { %>
+                    <i class="fab fa-apple"></i>
+                <% } else if (platform === 'android') { %>
+                    <i class="fab fa-android"></i>
+                <% } else if (platform === 'linux') { %>
+                    <i class="fab fa-linux"></i>
+                <% } else if (platform === 'windows') { %>
+                    <i class="fab fa-windows"></i>
+                <% } %>
+            </div>
+            <h1 class="title">راهنمای نصب برای <%= platformName %></h1>
+            <p class="subtitle">مراحل نصب و راه‌اندازی اپلیکیشن</p>
+        </div>
+
+        <div class="guide-content">
+            <% if (platform === 'ios') { %>
+                <div class="step">
+                    <div class="step-title">
+                        <span class="step-number">1</span>
+                        دانلود اپلیکیشن
+                    </div>
+                    <div class="step-content">
+                        ابتدا یکی از اپلیکیشن‌های زیر را از App Store دانلود کنید:
+                        <a href="https://apps.apple.com/app/shadowrocket/id932747118" class="app-link" target="_blank">
+                            <i class="fas fa-download"></i>
+                            Shadowrocket
+                        </a>
+                        <a href="https://apps.apple.com/app/quantumult-x/id1443988620" class="app-link" target="_blank">
+                            <i class="fas fa-download"></i>
+                            Quantumult X
+                        </a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">
+                        <span class="step-number">2</span>
+                        اضافه کردن کانفیگ
+                    </div>
+                    <div class="step-content">
+                        لینک اشتراک خود را کپی کرده و در اپلیکیشن وارد کنید. سپس روی "Subscribe" یا "اشتراک" کلیک کنید.
+                        <div class="tip">
+                            <strong>نکته:</strong> می‌توانید از QR Code نیز برای اضافه کردن کانفیگ استفاده کنید.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">
+                        <span class="step-number">3</span>
+                        اتصال
+                    </div>
+                    <div class="step-content">
+                        پس از اضافه شدن کانفیگ‌ها، یکی از سرورها را انتخاب کرده و روی دکمه اتصال کلیک کنید.
+                        <div class="warning">
+                            <strong>هشدار:</strong> برای اولین بار ممکن است سیستم اجازه VPN را درخواست کند که باید آن را تأیید کنید.
+                        </div>
+                    </div>
+                </div>
+
+            <% } else if (platform === 'android') { %>
+                <div class="step">
+                    <div class="step-title">
+                        <span class="step-number">1</span>
+                        دانلود اپلیکیشن
+                    </div>
+                    <div class="step-content">
+                        یکی از اپلیکیشن‌های زیر را دانلود و نصب کنید:
+                        <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" class="app-link" target="_blank">
+                            <i class="fas fa-download"></i>
+                            V2rayNG
+                        </a>
+                        <a href="https://github.com/2dust/v2rayNG/releases" class="app-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                            دانلود مستقیم V2rayNG
+                        </a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">
+                        <span class="step-number">2</span>
+                        اضافه کردن کانفیگ
+                    </div>
+                    <div class="step-content">
+                        روی علامت "+" در بالای اپلیکیشن کلیک کنید و "Import config from subscription" را انتخاب کنید. سپس لینک اشتراک را وارد کنید.
+                        <div class="tip">
+                            <strong>نکته:</strong> می‌توانید از QR Code Scanner نیز استفاده کنید.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">
+                        <span class="step-number">3</span>
+                        اتصال
+                    </div>
+                    <div class="step-content">
+                        یکی از سرورهای موجود را انتخاب کرده و روی دکمه V در پایین صفحه کلیک کنید تا اتصال برقرار شود.
+                    </div>
+                </div>
+
+            <% } else if (platform === 'linux') { %>
+                <div class="step">
+                    <div class="step-title">
+                        <span class="step-number">1</span>
+                        نصب V2Ray
+                    </div>
+                    <div class="step-content">
+                        ابتدا V2Ray را نصب کنید:
+                        <div style="background: #1a1a1a; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-family: monospace;">
+                            bash &lt;(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">
+                        <span class="step-number">2</span>
+                        دانلود کانفیگ
+                    </div>
+                    <div class="step-content">
+                        لینک اشتراک خود را در مرورگر باز کرده و فایل کانفیگ را دانلود کنید. سپس آن را در مسیر زیر قرار دهید:
+                        <div style="background: #1a1a1a; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-family: monospace;">
+                            /usr/local/etc/v2ray/config.json
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">
+                        <span class="step-number">3</span>
+                        راه‌اندازی سرویس
+                    </div>
+                    <div class="step-content">
+                        V2Ray را راه‌اندازی کنید:
+                        <div style="background: #1a1a1a; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-family: monospace;">
+                            sudo systemctl enable v2ray<br>
+                            sudo systemctl start v2ray
+                        </div>
+                    </div>
+                </div>
+
+            <% } else if (platform === 'windows') { %>
+                <div class="step">
+                    <div class="step-title">
+                        <span class="step-number">1</span>
+                        دانلود اپلیکیشن
+                    </div>
+                    <div class="step-content">
+                        یکی از اپلیکیشن‌های زیر را دانلود کنید:
+                        <a href="https://github.com/2dust/v2rayN/releases" class="app-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                            V2rayN
+                        </a>
+                        <a href="https://github.com/Qv2ray/Qv2ray/releases" class="app-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                            Qv2ray
+                        </a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">
+                        <span class="step-number">2</span>
+                        اضافه کردن کانفیگ
+                    </div>
+                    <div class="step-content">
+                        اپلیکیشن را اجرا کرده و روی "Subscription" کلیک کنید. سپس "Add" را انتخاب کرده و لینک اشتراک را وارد کنید.
+                        <div class="tip">
+                            <strong>نکته:</strong> می‌توانید از QR Code نیز برای اضافه کردن استفاده کنید.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">
+                        <span class="step-number">3</span>
+                        اتصال
+                    </div>
+                    <div class="step-content">
+                        یکی از سرورها را انتخاب کرده و روی دکمه "Start" کلیک کنید. اپلیکیشن در system tray قرار می‌گیرد.
+                        <div class="warning">
+                            <strong>هشدار:</strong> ممکن است Windows Defender هشدار دهد که باید اپلیکیشن را به لیست استثناء اضافه کنید.
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
